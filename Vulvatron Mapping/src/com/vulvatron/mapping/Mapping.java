@@ -34,7 +34,6 @@ public class Mapping {
 			new StripMap(2, 1, 5, 240, false),
 			new StripMap(2, 1, 6, 240, false),
 			
-
 	};
 
 }
