@@ -13,8 +13,8 @@ PGraphics canvas;
 
 boolean ready_to_go = true;
 int lastPosition;
-int canvasW = 240 * 3;
-int canvasH = 40 * 4;
+int canvasW = 400;
+int canvasH = 600;
 TestObserver testObserver;
 Mapping map = new Mapping();
 

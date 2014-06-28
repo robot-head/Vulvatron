@@ -24,6 +24,9 @@ color weighted_get(int xpos, int ypos, int radius) {
 
 
 boolean first_scrape = true;
+PVector[] locations;
+PixelPusher pusher;
+Strip strip;
 void scrape() {
   // scrape for the strips
   loadPixels();
@@ -36,9 +39,20 @@ void scrape() {
         pusherNoMap.put(pusher.getControllerOrdinal(), pusher);
       }
       for (Mapping.Arm arm : map.arms) {
-        
-        PixelPusher pusher = pusherNoMap.get(sMap.pusherNumber);
-        
+        locations = arm.getPixelLocations(true);
+        pusher = pusherNoMap.get(arm.top.pusherNumber);
+        strip = pusher.getStrip(arm.top.stripNumber);
+        for (int pixelNo = 0; pixelNo < locations.length; pixelNo++) {
+          color c = weighted_get(int(locations[pixelNo].x), int(locations[pixelNo].y), 2);
+          strip.setPixel(c, arm.top.startPixel + pixelNo);
+        }
+        locations = arm.getPixelLocations(false);
+        pusher = pusherNoMap.get(arm.bottom.pusherNumber);
+        strip = pusher.getStrip(arm.bottom.stripNumber);
+        for (int pixelNo = 0; pixelNo < locations.length; pixelNo++) {
+          color c = weighted_get(int(locations[pixelNo].x), int(locations[pixelNo].y), 2);
+          strip.setPixel(c, arm.bottom.startPixel + pixelNo);
+        }
       }
     }
   } 
