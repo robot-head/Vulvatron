@@ -19,7 +19,7 @@ color weighted_get(int xpos, int ypos, int radius) {
       blue += blue(thispixel);
     }
   }
-  return color(red/pixels_counted, green/pixels_counted, blue/pixels_counted);
+  return color(red/pixels_counted, blue/pixels_counted, green/pixels_counted);
 }
 
 

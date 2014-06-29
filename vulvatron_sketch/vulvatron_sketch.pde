@@ -1,4 +1,4 @@
-import com.heroicrobot.dropbit.devices.pixelpusher.PixelPusher;
+import com.heroicrobot.dropbit.devices.pixelpusher.PixelPusher; //<>//
 import codeanticode.syphon.*;
 import com.heroicrobot.dropbit.registry.*;
 import com.heroicrobot.dropbit.devices.pixelpusher.Pixel;
@@ -29,17 +29,41 @@ void setup() {
 }
 
 void draw() {
-  
+
   if (client.available()) {
     background(0);
     canvas = client.getGraphics(canvas);
     image(canvas, 0, 0, width, height);
   }
 
-  scrape();
+
+  
+//background(0);
+//showMap();
+scrape();
 }
 
 void stop()
 {
   super.stop();
+}
+
+void showMap() {
+  textSize(18);
+  
+  noStroke();
+  for (Mapping.Arm arm : map.arms) { //<>//
+    locations = arm.getPixelLocations(true);
+    fill(#FFFFFF);
+    text("" + arm.arm, locations[0].x, 20);
+    
+    for (int pixelNo = 0; pixelNo < locations.length; pixelNo++) {
+      ellipse(locations[pixelNo].x, locations[pixelNo].y, 10, 10);      
+    }
+    fill(#FF0000);
+    locations = arm.getPixelLocations(false);
+    for (int pixelNo = 0; pixelNo < locations.length; pixelNo++) {
+      ellipse(locations[pixelNo].x, locations[pixelNo].y, 10, 10);
+    }
+  }
 }
