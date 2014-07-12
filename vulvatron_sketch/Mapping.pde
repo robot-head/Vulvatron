@@ -61,13 +61,14 @@ class Mapping {
       return ((width / VULVA_SUPPORT_ARMS) * (float(arm-1)) + ((width / VULVA_SUPPORT_ARMS) / 2));
     }
   }
-  // StripLocation(int pusherNumber, int groupNumber, int stripNumber, int startPixel, int endPixel) {
+  // StripLocation(int pusherNumber, int groupNumber, int stripNumber, int startPixel, int endPixel) {  
   Arm[] arms = {
     new Arm(1, new StripLocation(1, VULVATRON_GROUP, 5, 1, 240), new StripLocation(2, VULVATRON_GROUP, 5, 1, 94)), 
-    new Arm(2, new StripLocation(1, VULVATRON_GROUP, 4, 1, 240), new StripLocation(2, VULVATRON_GROUP, 4, 1, 90)), 
-    new Arm(3, new StripLocation(1, VULVATRON_GROUP, 3, 1, 240), new StripLocation(2, VULVATRON_GROUP, 3, 1, 62)), 
-    new Arm(4, new StripLocation(1, VULVATRON_GROUP, 2, 1, 240), new StripLocation(2, VULVATRON_GROUP, 2, 1, 70)), 
-    new Arm(5, new StripLocation(1, VULVATRON_GROUP, 1, 1, 240), new StripLocation(2, VULVATRON_GROUP, 1, 1, 94)), 
+    new Arm(2, new StripLocation(1, VULVATRON_GROUP, 4, 1, 240), new StripLocation(2, VULVATRON_GROUP, 4, 1, 91)), 
+    new Arm(3, new StripLocation(1, VULVATRON_GROUP, 3, 1, 240), new StripLocation(2, VULVATRON_GROUP, 3, 1, 68)), 
+    new Arm(4, new StripLocation(1, VULVATRON_GROUP, 2, 1, 240), new StripLocation(2, VULVATRON_GROUP, 2, 1, 71)), 
+    new Arm(5, new StripLocation(1, VULVATRON_GROUP, 1, 1, 240), new StripLocation(2, VULVATRON_GROUP, 1, 1, 92)), 
     new Arm(6, new StripLocation(1, VULVATRON_GROUP, 0, 1, 240), new StripLocation(2, VULVATRON_GROUP, 0, 1, 94))
     };
+ 
   }

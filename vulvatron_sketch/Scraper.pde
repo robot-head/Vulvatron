@@ -1,4 +1,4 @@
-
+ //<>//
 color weighted_get(int xpos, int ypos, int radius) {
   int red, green, blue;
   int xoffset, yoffset;
@@ -33,6 +33,7 @@ void scrape() {
   try {
     if (testObserver.hasStrips) {
       registry.startPushing();
+      registry.setAntiLog(true);
       List<PixelPusher> pushers = registry.getPushers(VULVATRON_GROUP);
       Map<Integer, PixelPusher> pusherNoMap = new HashMap<Integer, PixelPusher>();
       for (PixelPusher pusher : pushers) {
@@ -41,23 +42,30 @@ void scrape() {
       for (Mapping.Arm arm : map.arms) {
         locations = arm.getPixelLocations(true);
         pusher = pusherNoMap.get(arm.top.pusherNumber);
-        strip = pusher.getStrip(arm.top.stripNumber);
-        for (int pixelNo = 0; pixelNo < locations.length; pixelNo++) {
-          color c = weighted_get(int(locations[pixelNo].x), int(locations[pixelNo].y), 2);
-          strip.setPixel(c, arm.top.startPixel + pixelNo);
+        if (pusher != null) {
+          strip = pusher.getStrip(arm.top.stripNumber);
+          for (int pixelNo = 0; pixelNo < locations.length; pixelNo++) {
+            color c = weighted_get(int(locations[pixelNo].x), int(locations[pixelNo].y), 2);
+            strip.setPixel(c, arm.top.startPixel + pixelNo);
+          }
         }
         locations = arm.getPixelLocations(false);
         pusher = pusherNoMap.get(arm.bottom.pusherNumber);
-        strip = pusher.getStrip(arm.bottom.stripNumber);
-        for (int pixelNo = 0; pixelNo < locations.length; pixelNo++) {
-          color c = weighted_get(int(locations[pixelNo].x), int(locations[pixelNo].y), 2);
-          strip.setPixel(c, arm.bottom.startPixel + pixelNo);
+        if (pusher != null) {
+          strip = pusher.getStrip(arm.bottom.stripNumber);
+          for (int pixelNo = 0; pixelNo < locations.length; pixelNo++) {
+            color c = weighted_get(int(locations[pixelNo].x), int(locations[pixelNo].y), 2);
+            strip.setPixel(c, arm.bottom.startPixel + pixelNo);
+          }
         }
       }
+    } else {
+      print("doesn't have strips");
     }
   } 
   catch (Exception e) {
-    print("Something bad happened!");
+    print("Something bad happened!" + e);
+    // e.printStackTrace();
   }
   updatePixels();
 }
